@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} - Student Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0"><i class="bi bi-pencil-square"></i> Edit Student: {{student.first_name}} {{student.last_name}}</h3>
+                </div>
+                <div class="card-body">
+                    {{#if error}}
+                        <div class="alert alert-danger">{{error}}</div>
+                    {{/if}}
+                    <form action="/admin/students/{{student.id}}/edit" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="first_name" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{student.first_name}}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="last_name" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" value="{{student.last_name}}" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{student.email}}" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="course" class="form-label">Course</label>
+                                <input type="text" class="form-control" id="course" name="course" value="{{student.course}}" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="year_level" class="form-label">Year Level</label>
+                                <select class="form-select" id="year_level" name="year_level" required>
+                                    <option value="1" {{#if (eq student.year_level 1)}}selected{{/if}}>1st Year</option>
+                                    <option value="2" {{#if (eq student.year_level 2)}}selected{{/if}}>2nd Year</option>
+                                    <option value="3" {{#if (eq student.year_level 3)}}selected{{/if}}>3rd Year</option>
+                                    <option value="4" {{#if (eq student.year_level 4)}}selected{{/if}}>4th Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="photo" class="form-label">Update Student Photo</label>
+                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                            {{#if student.photo}}
+                                <div class="mt-2">Current Photo: <img src="{{student.photo}}" alt="Student Photo" style="width: 50px; height: 50px; border-radius: 50%;"></div>
+                            {{/if}}
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="/admin/dashboard" class="btn btn-secondary me-2">Cancel</a>
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

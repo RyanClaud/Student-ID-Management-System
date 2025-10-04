@@ -1,0 +1,67 @@
+{{> head}}
+<body class="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 min-h-screen flex flex-col">
+  <!-- Main content wrapper -->
+  <div class="flex-1 flex items-center justify-center">
+    <div class="w-full max-w-md">
+      <!-- Card -->
+      <form class="bg-white p-8 rounded-2xl shadow-lg" method="POST" action="/login">
+        <!-- Header -->
+        <div class="text-center mb-6">
+          <div class="flex justify-center mb-3">
+            <div class="bg-blue-600 text-white font-bold text-xl w-12 h-12 flex items-center justify-center rounded-full shadow-md">
+              ID
+            </div>
+          </div>
+          <h2 class="text-2xl font-bold text-blue-800">Student ID Management</h2>
+          <p class="text-gray-600 text-sm">Please sign in to continue</p>
+        </div>
+
+        <!-- Error Message -->
+        {{#if error}}
+          <div class="bg-red-100 text-red-700 p-2 mb-4 rounded text-sm text-center">
+            {{ error }}
+          </div>
+        {{/if}}
+
+        <!-- Inputs -->
+        <div class="space-y-3">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" 
+            required 
+          />
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Password" 
+            class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" 
+            required 
+          />
+        </div>
+
+        <!-- Submit -->
+        <button 
+          type="submit" 
+          class="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg shadow transition"
+        >
+          Login
+        </button>
+
+        <!-- Links -->
+        <div class="mt-4 text-center space-y-1">
+          <a href="/register" class="text-blue-700 hover:underline text-sm">
+            Don't have an account? Register
+          </a>
+          <br />
+          <a href="/forgotpassword" class="text-gray-600 hover:underline text-sm">
+            Forgot password?
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {{> footer }}
+

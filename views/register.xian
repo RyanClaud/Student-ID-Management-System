@@ -1,0 +1,31 @@
+{{> head}}
+<body class="bg-gray-50">
+  <div class="flex justify-center mt-10">
+    <form class="flex flex-col w-96 p-6 border rounded-lg shadow" method="POST" action="/register" enctype="multipart/form-data">
+      <h2 class="text-xl font-bold mb-4 text-center">Registration Form</h2>
+      {{#if error}}
+        <script>alert('{{error}}');</script>
+      {{/if}}
+      {{#if success}}
+        <script>alert('{{success}}');</script>
+      {{/if}}
+      <input type="hidden" name="role" value="student" />
+      <input type="text" name="first_name" placeholder="First Name" class="mb-2 p-2 border rounded" required />
+      <input type="text" name="last_name" placeholder="Last Name" class="mb-2 p-2 border rounded" required />
+      <input type="email" name="email" placeholder="Email" class="mb-2 p-2 border rounded" required />
+      <input type="password" name="password" placeholder="Password" class="mb-2 p-2 border rounded" required />
+      <input type="text" name="course" placeholder="Course" class="mb-2 p-2 border rounded" required />
+      <select name="year_level" class="mb-2 p-2 border rounded" required>
+        <option value="">Select Year Level</option>
+        <option value="1">First Year</option>
+        <option value="2">Second Year</option>
+        <option value="3">Third Year</option>
+        <option value="4">Fourth Year</option>
+      </select>
+      <label class="mb-1">Photo (optional):</label>
+      <input type="file" name="photo" accept="image/*" class="mb-2 p-2 border rounded" />
+      <button type="submit" class="bg-green-500 text-white p-2 rounded">Register</button>
+      <a href="/login" class="text-blue-700 mt-2 text-center">Already have an account? Login</a>
+    </form>
+  </div>
+{{> footer }}
