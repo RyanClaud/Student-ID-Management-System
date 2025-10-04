@@ -28,6 +28,9 @@ import { sequelize } from "./models/db.js";
 import { User } from "./models/userModel.js";
 import bcrypt from "bcrypt";
 import inquirer from "inquirer";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const { createDb } = await inquirer.prompt([
   { type: "confirm", name: "createDb", message: "Database 'student-id-management-system' may not exist. Create it?", default: true }
@@ -46,6 +49,7 @@ try {
 
   // Seed a default admin user
   const adminPassword = "password123";
+  const adminPassword = process.env.ADMIN_PASSWORD || "password123";
   const hashedPassword = await bcrypt.hash(adminPassword, 10);
   await User.create({
     name: "Admin User",
